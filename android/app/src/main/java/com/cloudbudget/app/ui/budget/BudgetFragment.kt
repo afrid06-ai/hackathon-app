@@ -32,7 +32,7 @@ class BudgetFragment : Fragment() {
             }
         }
 
-        viewModel.budgets.observe(viewLifecycleOwner) { budgets ->
+        viewModel.budget.observe(viewLifecycleOwner) { budget ->
             // Update with real data when available
         }
 
@@ -40,6 +40,6 @@ class BudgetFragment : Fragment() {
             Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
         }
 
-        viewModel.loadBudgets()
+        viewModel.loadBudget()
     }
 }
