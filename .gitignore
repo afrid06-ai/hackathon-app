@@ -11,8 +11,8 @@ local.properties
 *.iml
 .idea/
 *.apk
-# Ignore accidental google-services outside app/; android/app/google-services.json is committed as a local placeholder.
+# Firebase config contains API keys — real file is local-only; use google-services.json.example + team secret store.
+android/app/google-services.json
 google-services.json
-!android/app/google-services.json
 
 backend/.venv/
