@@ -11,3 +11,5 @@ local.properties
 *.iml
 .idea/
 *.apk
+
+backend/.venv/
