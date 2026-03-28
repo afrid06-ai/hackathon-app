@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#E94560</color>
+    <color name="primary_dark">#C73E54</color>
+    <color name="background_dark">#1A1A2E</color>
+    <color name="surface_dark">#16213E</color>
+    <color name="on_surface">#FFFFFF</color>
+    <color name="aws_orange">#FF9900</color>
+    <color name="azure_blue">#0078D4</color>
+    <color name="gcp_blue">#4285F4</color>
+    <color name="success_green">#69F0AE</color>
+    <color name="error_red">#FF5252</color>
+    <color name="text_secondary">#AAAAAA</color>
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.CloudBudget" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">#E94560</item>
+        <item name="colorPrimaryContainer">#C73E54</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="android:colorBackground">#1A1A2E</item>
+        <item name="colorSurface">#16213E</item>
+        <item name="colorOnSurface">#FFFFFF</item>
+        <item name="android:statusBarColor">#1A1A2E</item>
+        <item name="android:navigationBarColor">#16213E</item>
+    </style>
+</resources>
