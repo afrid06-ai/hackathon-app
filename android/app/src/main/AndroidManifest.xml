@@ -35,6 +35,7 @@
             android:theme="@style/Theme.CloudBudget" />
 
         <activity android:name=".ui.auth.LoginActivity" android:theme="@style/Theme.CloudBudget" />
+        <activity android:name=".ui.auth.ForgotPasswordActivity" android:theme="@style/Theme.CloudBudget" />
         <activity android:name=".ui.auth.CloudCredentialsActivity" android:theme="@style/Theme.CloudBudget" />
         <activity android:name=".ui.settings.SettingsActivity" android:theme="@style/Theme.CloudBudget" />
         <activity android:name=".ui.settings.ProfileActivity" android:theme="@style/Theme.CloudBudget" />

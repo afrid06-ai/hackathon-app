@@ -67,7 +67,10 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, R.string.continue_with_google, Toast.LENGTH_SHORT).show()
         }
         btnForgot.setOnClickListener {
-            Toast.makeText(this, R.string.forgot_password, Toast.LENGTH_SHORT).show()
+            startActivity(
+                Intent(this, ForgotPasswordActivity::class.java)
+                    .putExtra(ForgotPasswordActivity.EXTRA_PREFILL_EMAIL, etEmail.text?.toString().orEmpty().trim())
+            )
         }
 
         setSignUpMode(false)

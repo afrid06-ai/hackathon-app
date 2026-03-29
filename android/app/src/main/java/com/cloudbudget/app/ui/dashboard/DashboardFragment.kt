@@ -17,6 +17,8 @@ import com.cloudbudget.app.ui.auth.CloudCredentialsActivity
 import com.cloudbudget.app.ui.detail.CloudDetailActivity
 import com.cloudbudget.app.ui.util.bindDrawerMenu
 import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.highlight.Highlight
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
@@ -25,6 +27,7 @@ import com.github.mikephil.charting.animation.Easing
 class DashboardFragment : Fragment() {
 
     private val viewModel: DashboardViewModel by viewModels()
+    private var lastTotal = 0.0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_dashboard, container, false)
@@ -124,10 +127,16 @@ class DashboardFragment : Fragment() {
             colors = listOf(Color.parseColor("#FFAC52"), Color.parseColor("#61CDFF"), Color.parseColor("#00EEA6"))
             setDrawValues(false)
             sliceSpace = 3f
+            selectionShift = 10f
         }
-        chart.centerText = "$${String.format("%.2f", total)}\nThis Month"
+        chart.centerText = "$${String.format("%.2f", total)}\nAllocated"
         chart.data = PieData(dataSet)
-        chart.animateY(800, Easing.EaseInOutQuad)
+        chart.animateXY(1000, 900, Easing.EaseOutCubic, Easing.EaseInOutQuad)
+        chart.spin(700, chart.rotationAngle, chart.rotationAngle + 24f, Easing.EaseOutQuad)
+        chart.highlightValues(null)
+        lastTotal = total
+        bindInteractiveCenterText(chart)
+        chart.invalidate()
     }
 
     private fun setupPieChart(chart: PieChart) {
@@ -145,7 +154,23 @@ class DashboardFragment : Fragment() {
             setCenterTextSize(14f)
             legend.isEnabled = false
             setDrawEntryLabels(false)
-            setTouchEnabled(false)
+            setTouchEnabled(true)
+            isRotationEnabled = true
+            isHighlightPerTapEnabled = true
         }
+    }
+
+    private fun bindInteractiveCenterText(chart: PieChart) {
+        chart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
+            override fun onValueSelected(e: com.github.mikephil.charting.data.Entry?, h: Highlight?) {
+                val pie = e as? PieEntry ?: return
+                val percent = if (lastTotal > 0) (pie.value / lastTotal.toFloat()) * 100f else 0f
+                chart.centerText = "${pie.label}\n$${String.format("%.2f", pie.value.toDouble())}  •  ${String.format("%.0f", percent)}%"
+            }
+
+            override fun onNothingSelected() {
+                chart.centerText = "$${String.format("%.2f", lastTotal)}\nAllocated"
+            }
+        })
     }
 }
